@@ -1,11 +1,17 @@
 package br.com.watchwatt.watchwatt.domain.appliance;
 
+import jakarta.persistence.*;
+
+@Table(name = "tb_appliance")
+@Entity
 public class Appliance {
 
     String name;
     String model;
     int power; //potência do equipamento
-    Long id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)//gerar id unico sequencial
+    Long applianceId;
 
     public Appliance() {
     }
@@ -14,7 +20,13 @@ public class Appliance {
         this.name = name;
         this.model = model;
         this.power = power;
-        this.id = id;
+        this.applianceId = id;
+    }
+
+    public Appliance(String name, String model, int power) {
+        this.name = name;
+        this.model = model;
+        this.power = power;
     }
 
     public String getName() {
@@ -44,12 +56,12 @@ public class Appliance {
         return this;
     }
 
-    public Long getId() {
-        return id;
+    public Long getApplianceId() {
+        return applianceId;
     }
 
-    public Appliance setId(Long id) {
-        this.id = id;
+    public Appliance setApplianceId(Long applianceId) {
+        this.applianceId = applianceId;
         return this;
     }
 }
